@@ -1,6 +1,8 @@
-# OAuthGitHub.Api
+# OAuthGitHub
 
 [![.NET](https://github.com/afgalvan/OAuthGitHub/actions/workflows/dotnet.yml/badge.svg)](https://github.com/afgalvan/OAuthGitHub/actions/workflows/dotnet.yml)
+
+Basic Web API with GitHub OAuth
 
 ## Run it from Docker
 
