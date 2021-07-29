@@ -1,6 +1,6 @@
 # OAuthGitHub.Api
 
-[![.NET](https://github.com/afgalvan/OAuthGitHub.Api/actions/workflows/dotnet.yml/badge.svg)](https://github.com/afgalvan/OAuthGitHub.Api/actions/workflows/dotnet.yml)
+[![.NET](https://github.com/afgalvan/OAuthGitHub/actions/workflows/dotnet.yml/badge.svg)](https://github.com/afgalvan/OAuthGitHub/actions/workflows/dotnet.yml)
 
 ## Run it from Docker
 
