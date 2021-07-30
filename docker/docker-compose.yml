@@ -3,20 +3,20 @@ version: "3.9"
 
 services:
   db:
-    container_name: mysql_db
+    container_name: oauth_db
     restart: always
     image: mysql:8.0
     volumes:
       - mysql:/var/lib/mysql
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: 1
-      MYSQL_DATABASE: database_name
-      MYSQL_USER: username
-      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: oauth_github
+      MYSQL_USER: oauth_user
+      MYSQL_PASSWORD: oauth_password
 
   api:
-    container_name: asp_api
-    image: asp_api
+    container_name: oauth_api
+    image: oauth_api
     restart: always
     build:
       context: ../
@@ -29,7 +29,7 @@ services:
       - 5000:5000
 
   nginx:
-    container_name: api_proxy
+    container_name: oauth_proxy
     image: nginx:1.20-alpine
     restart: always
     ports:
