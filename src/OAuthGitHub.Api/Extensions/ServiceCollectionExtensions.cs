@@ -1,10 +1,12 @@
-using System;
 using System.Net;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using OAuthGitHub.Api.Data;
 using OAuthGitHub.Api.OpenApiSpec;
@@ -50,14 +52,42 @@ namespace OAuthGitHub.Api.Extensions
                 }
             };
 
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(options =>
             {
-                c.OperationFilter<AuthorizationOperationFilter>();
-                c.SwaggerDoc("v1",
-                    new OpenApiInfo
-                        {Title = "OAuthGitHub", Version = "v1"});
-                c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
+                options.OperationFilter<AuthorizationOperationFilter>();
+                options.SwaggerDoc("v1",
+                    new OpenApiInfo {Title = "OAuthGitHub", Version = "v1"});
+                options.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
             });
+        }
+
+        public static void AddAuthentication(this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            byte[] key = Encoding.UTF8.GetBytes(configuration["JWT:Key"]);
+
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme    = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey         = new SymmetricSecurityKey(key),
+                        ValidateIssuer           = false,
+                        ValidateAudience         = false
+                    };
+                })
+                .AddGitHub(options =>
+                {
+                    options.ClientId     = configuration["OAuth:GitHub:ClientId"];
+                    options.ClientSecret = configuration["OAuth:GitHub:ClientSecret"];
+                    options.Scope.Add("user:email");
+                });
         }
     }
 }

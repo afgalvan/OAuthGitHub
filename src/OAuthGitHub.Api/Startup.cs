@@ -19,6 +19,7 @@ namespace OAuthGitHub.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddAuthentication(Configuration);
             services.ConfigureDbContext(Configuration);
             services.ConfigureProxy();
             services.AddSwagger();
