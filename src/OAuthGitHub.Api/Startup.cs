@@ -1,3 +1,4 @@
+using dotenv.net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,15 +19,21 @@ namespace OAuthGitHub.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            DotEnv.Load(new DotEnvOptions(trimValues: true));
+
+            services.AddServices();
             services.AddControllers();
-            services.AddAuthentication(Configuration);
+            services.AddOAuth();
             services.ConfigureDbContext(Configuration);
             services.ConfigureProxy();
             services.AddSwagger();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            IConfigurationBuilder configurationBuilder)
         {
+            configurationBuilder.AddEnvironmentVariables();
+
             app.UseForwardedHeaders();
             if (env.IsDevelopment())
             {

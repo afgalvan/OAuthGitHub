@@ -1,5 +1,8 @@
+using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using dotenv.net;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -15,6 +18,11 @@ namespace OAuthGitHub.Api.Extensions
 {
     public static class ServiceCollectionExtensions
     {
+        public static void AddServices(this IServiceCollection services)
+        {
+            services.AddScoped<IConfigurationBuilder, ConfigurationBuilder>();
+        }
+
         public static void ConfigureDbContext(this IServiceCollection services,
             IConfiguration configuration)
         {
@@ -61,10 +69,11 @@ namespace OAuthGitHub.Api.Extensions
             });
         }
 
-        public static void AddAuthentication(this IServiceCollection services,
-            IConfiguration configuration)
+        public static void AddOAuth(this IServiceCollection services)
         {
-            byte[] key = Encoding.UTF8.GetBytes(configuration["JWT:Key"]);
+            IDictionary<string, string> env = DotEnv.Read();
+
+            byte[] key = Encoding.UTF8.GetBytes(env["JWT_SECRET"]);
 
             services.AddAuthentication(options =>
                 {
@@ -84,8 +93,8 @@ namespace OAuthGitHub.Api.Extensions
                 })
                 .AddGitHub(options =>
                 {
-                    options.ClientId     = configuration["OAuth:GitHub:ClientId"];
-                    options.ClientSecret = configuration["OAuth:GitHub:ClientSecret"];
+                    options.ClientId     = env["GITHUB_CLIENT_ID"];
+                    options.ClientSecret = env["GITHUB_CLIENT_SECRET"];
                     options.Scope.Add("user:email");
                 });
         }
