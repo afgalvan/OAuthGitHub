@@ -9,9 +9,9 @@ namespace OAuthGitHub.Api.Infrastructure.Persistence
 {
     public class UserMysqlRepository : IUserRepository
     {
-        private readonly ApplicationContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public UserMysqlRepository(ApplicationContext context)
+        public UserMysqlRepository(ApplicationDbContext context)
         {
             context.Database.EnsureCreated();
             _context = context;
