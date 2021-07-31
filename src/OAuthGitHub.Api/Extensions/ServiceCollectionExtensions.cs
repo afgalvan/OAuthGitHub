@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Text;
 using dotenv.net;
@@ -9,9 +9,13 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using OAuthGitHub.Api.Data;
+using OAuthGitHub.Api.Application;
+using OAuthGitHub.Api.Domain;
+using OAuthGitHub.Api.Infrastructure.Controllers.SignUp;
+using OAuthGitHub.Api.Infrastructure.Persistence;
 using OAuthGitHub.Api.OpenApiSpec;
 
 namespace OAuthGitHub.Api.Extensions
@@ -20,14 +24,19 @@ namespace OAuthGitHub.Api.Extensions
     {
         public static void AddServices(this IServiceCollection services)
         {
-            services.AddScoped<IConfigurationBuilder, ConfigurationBuilder>();
+            services.AddScoped<SecurityTokenHandler, JwtSecurityTokenHandler>();
+            services.AddScoped<IUserRepository, UserMysqlRepository>();
+            services.AddScoped<JwtGenerator>();
+            services.AddScoped<AuthService>();
+            services.AddScoped<Hasher>();
+            services.AddScoped<ILogger<SignUpController>, Logger<SignUpController>>();
         }
 
         public static void ConfigureDbContext(this IServiceCollection services,
             IConfiguration configuration)
         {
             services.AddDbContext<ApplicationContext>(options =>
-                options.UseMySQL(configuration.GetConnectionString("MySQL"))
+                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
             );
         }
 
@@ -74,6 +83,8 @@ namespace OAuthGitHub.Api.Extensions
             IDictionary<string, string> env = DotEnv.Read();
 
             byte[] key = Encoding.UTF8.GetBytes(env["JWT_SECRET"]);
+
+            services.AddSingleton(_ => new SecretKey(key));
 
             services.AddAuthentication(options =>
                 {

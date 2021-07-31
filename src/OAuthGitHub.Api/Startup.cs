@@ -29,11 +29,9 @@ namespace OAuthGitHub.Api
             services.AddSwagger();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
-            IConfigurationBuilder configurationBuilder)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            configurationBuilder.AddEnvironmentVariables();
-
+            app.ConfigureCors(Configuration);
             app.UseForwardedHeaders();
             if (env.IsDevelopment())
             {
