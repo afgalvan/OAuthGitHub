@@ -5,14 +5,13 @@ services:
   db:
     container_name: oauth_db
     restart: always
-    image: mysql:8.0
+    image: postgres:13.3-alpine
     volumes:
-      - mysql:/var/lib/mysql
+      - postgresql:/var/lib/postgresql/
     environment:
-      MYSQL_RANDOM_ROOT_PASSWORD: 1
-      MYSQL_DATABASE: oauth_github
-      MYSQL_USER: oauth_user
-      MYSQL_PASSWORD: oauth_password
+      POSTGRES_DB: oauth_github
+      POSTGRES_USER: oauth_user
+      POSTGRES_PASSWORD: oauth_password
 
   api:
     container_name: oauth_api
@@ -41,4 +40,4 @@ services:
       - api
 
 volumes:
-  mysql:
+  postgresql:
