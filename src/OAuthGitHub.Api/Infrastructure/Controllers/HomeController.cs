@@ -1,12 +1,19 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace OAuthGitHub.Api.Controllers
+namespace OAuthGitHub.Api.Infrastructure.Controllers
 {
     [Route("/")]
     [ApiController]
     public class HomeController : ControllerBase
     {
+        [Authorize]
+        [HttpGet("private")]
+        public ActionResult Private() => Ok(new
+        {
+            Name = "Private Route",
+        });
+
         [HttpGet]
         public ActionResult Index() => Ok(new
         {
