@@ -13,10 +13,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using OAuthGitHub.Api.Application;
+using OAuthGitHub.Api.Application.OpenApiSpec;
 using OAuthGitHub.Api.Domain;
 using OAuthGitHub.Api.Infrastructure.Controllers.SignUp;
 using OAuthGitHub.Api.Infrastructure.Persistence;
-using OAuthGitHub.Api.OpenApiSpec;
 
 namespace OAuthGitHub.Api.Extensions
 {
@@ -35,7 +35,7 @@ namespace OAuthGitHub.Api.Extensions
         public static void ConfigureDbContext(this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationContext>(options =>
+            services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
             );
         }
@@ -97,6 +97,7 @@ namespace OAuthGitHub.Api.Extensions
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
+                        ValidateLifetime         = true,
                         IssuerSigningKey         = new SymmetricSecurityKey(key),
                         ValidateIssuer           = false,
                         ValidateAudience         = false

@@ -7,7 +7,7 @@ using OAuthGitHub.Api.Infrastructure.Persistence;
 
 namespace OAuthGitHub.Api.Migrations
 {
-    [DbContext(typeof(ApplicationContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

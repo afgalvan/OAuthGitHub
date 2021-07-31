@@ -14,6 +14,7 @@ namespace OAuthGitHub.Api.Infrastructure.Controllers
             Name = "Private Route",
         });
 
+        [Authorize]
         [HttpGet]
         public ActionResult Index() => Ok(new
         {

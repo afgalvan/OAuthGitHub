@@ -17,12 +17,19 @@ namespace OAuthGitHub.Api.Infrastructure.Controllers.SignIn
             _authService = authService;
         }
 
+        private IActionResult ProviderNotSupported(string provider)
+        {
+            ModelState.AddModelError("ProviderNotSupported",
+                $"Login provider from {provider} is not supported");
+            return BadRequest(new ValidationProblemDetails(ModelState));
+        }
+
         [HttpPost("signIn/{provider}")]
-        public async Task<ActionResult> SignIn([FromRoute] string provider)
+        public async Task<IActionResult> SignIn([FromRoute] string provider)
         {
             if (!await HttpContext.IsProviderSupportedAsync(provider))
             {
-                return BadRequest("Provider is not supported");
+                return ProviderNotSupported(provider);
             }
 
             return Challenge(new AuthenticationProperties {RedirectUri = "/"}, provider);

@@ -1,4 +1,4 @@
-namespace OAuthGitHub.Api.OpenApiSpec
+namespace OAuthGitHub.Api.Application.OpenApiSpec
 {
     public static class AuthenticationScheme
     {

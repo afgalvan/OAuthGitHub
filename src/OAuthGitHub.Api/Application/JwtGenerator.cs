@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Security.Claims;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
@@ -9,7 +10,7 @@ namespace OAuthGitHub.Api.Application
 {
     public class JwtGenerator
     {
-        private const    int                  TokenDurationDays = 1;
+        private const    int                  TokenDaysDuration = 1;
         private readonly SecretKey            _secret;
         private readonly SecurityTokenHandler _tokenHandler;
 
@@ -28,7 +29,7 @@ namespace OAuthGitHub.Api.Application
             return new SecurityTokenDescriptor
             {
                 Subject            = new ClaimsIdentity(claims),
-                Expires            = DateTime.Now.AddDays(TokenDurationDays),
+                Expires            = DateTime.Now.AddDays(TokenDaysDuration),
                 SigningCredentials = signInCredentials,
             };
         }
@@ -37,7 +38,8 @@ namespace OAuthGitHub.Api.Application
         {
             return new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Sub,
+                    user.Id.ToString(CultureInfo.InvariantCulture))
             };
         }
 

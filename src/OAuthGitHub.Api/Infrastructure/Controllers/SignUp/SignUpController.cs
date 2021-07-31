@@ -29,11 +29,12 @@ namespace OAuthGitHub.Api.Infrastructure.Controllers.SignUp
             try
             {
                 string token = await _authService.SignUp(user, cancellationToken);
+                _logger.LogInformation("New token retrieved");
                 return Ok(new AuthenticationResponse(token));
             }
             catch (Exception exception)
             {
-                _logger.Log(LogLevel.Error, exception.StackTrace);
+                _logger.LogError(exception.StackTrace);
                 return BadRequest();
             }
         }

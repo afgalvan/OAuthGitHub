@@ -8,7 +8,7 @@ using OAuthGitHub.Api.Infrastructure.Persistence;
 
 namespace OAuthGitHub.Api.Migrations
 {
-    [DbContext(typeof(ApplicationContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20210730223137_Initial")]
     partial class Initial
     {
