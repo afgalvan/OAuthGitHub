@@ -2,12 +2,18 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>OAuthGithub.Test</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="FluentAssertions" Version="5.10.3" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.8" />
       <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
       <PackageReference Include="SpecFlow.xUnit" Version="3.9.22" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\OAuthGitHub.Api\OAuthGitHub.Api.csproj" />
     </ItemGroup>
 
 </Project>
