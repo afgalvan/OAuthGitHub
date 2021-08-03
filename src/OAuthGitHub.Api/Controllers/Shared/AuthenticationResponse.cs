@@ -1,4 +1,4 @@
-namespace OAuthGitHub.Api.Infrastructure.Controllers
+namespace OAuthGitHub.Api.Controllers
 {
     public class AuthenticationResponse
     {
