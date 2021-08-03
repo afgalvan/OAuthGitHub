@@ -2,7 +2,7 @@ using System;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
-namespace OAuthGitHub.Api.Application
+namespace OAuthGithub.Core.Application
 {
     public class Hasher
     {

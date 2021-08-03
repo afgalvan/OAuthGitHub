@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using OAuthGitHub.Api.Infrastructure.Persistence;
+using OAuthGithub.Core.Infrastructure.Persistence;
 
-namespace OAuthGitHub.Api.Migrations
+namespace OAuthGithub.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20210730223137_Initial")]

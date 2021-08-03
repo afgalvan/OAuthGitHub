@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using OAuthGitHub.Api.Domain;
+using OAuthGithub.Core.Domain;
 
-namespace OAuthGitHub.Api.Infrastructure.Persistence
+namespace OAuthGithub.Core.Infrastructure.Persistence
 {
     public class ApplicationDbContext : DbContext
     {

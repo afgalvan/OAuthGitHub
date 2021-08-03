@@ -1,20 +1,17 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using OAuthGitHub.Api.Application;
 using OAuthGitHub.Api.Extensions;
 
-namespace OAuthGitHub.Api.Infrastructure.Controllers.SignIn
+namespace OAuthGitHub.Api.Controllers.SignIn
 {
     [Route("auth")]
     [ApiController]
     public class SignInController : ControllerBase
     {
-        private readonly AuthService _authService;
 
-        public SignInController(AuthService authService)
+        public SignInController()
         {
-            _authService = authService;
         }
 
         private IActionResult ProviderNotSupported(string provider)

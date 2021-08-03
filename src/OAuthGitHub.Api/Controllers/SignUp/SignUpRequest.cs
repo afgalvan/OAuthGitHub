@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace OAuthGitHub.Api.Infrastructure.Controllers.SignUp
+namespace OAuthGitHub.Api.Controllers.SignUp
 {
     public class SignUpRequest
     {

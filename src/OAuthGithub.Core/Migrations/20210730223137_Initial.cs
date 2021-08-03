@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace OAuthGitHub.Api.Migrations
+namespace OAuthGithub.Core.Migrations
 {
     public partial class Initial : Migration
     {

@@ -1,34 +1,35 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using OAuthGitHub.Api.Application;
-using OAuthGitHub.Api.Domain;
+using OAuthGitHub.Api.Controllers.Shared;
+using OAuthGithub.Core.Application;
 
-namespace OAuthGitHub.Api.Infrastructure.Controllers.SignUp
+namespace OAuthGitHub.Api.Controllers.SignUp
 {
     [Route("auth")]
     [ApiController]
     public class SignUpController : ControllerBase
     {
-        private readonly AuthService               _authService;
+        private readonly IMediator                 _mediator;
         private readonly ILogger<SignUpController> _logger;
 
-        public SignUpController(AuthService authService, ILogger<SignUpController> logger)
+        public SignUpController(ILogger<SignUpController> logger, IMediator mediator)
         {
-            _authService = authService;
-            _logger      = logger;
+            _logger   = logger;
+            _mediator = mediator;
         }
 
         [HttpPost("signUp")]
         public async Task<ActionResult<AuthenticationResponse>> SignUp(
             [FromBody] SignUpRequest request, CancellationToken cancellationToken)
         {
-            var user = new User(request.Username, request.Email, request.Password);
+            var command = new RegisterCommand(request.Username, request.Email, request.Password);
             try
             {
-                string token = await _authService.SignUp(user, cancellationToken);
+                string token = await _mediator.Send(command, cancellationToken);
                 _logger.LogInformation("New token retrieved");
                 return Ok(new AuthenticationResponse(token));
             }

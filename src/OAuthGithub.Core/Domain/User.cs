@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace OAuthGitHub.Api.Domain
+namespace OAuthGithub.Core.Domain
 {
     public class User
     {

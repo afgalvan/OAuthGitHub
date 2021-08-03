@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using OAuthGitHub.Api.Infrastructure.Persistence;
+using OAuthGithub.Core.Infrastructure.Persistence;
 
-namespace OAuthGitHub.Api.Migrations
+namespace OAuthGitHub.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationContextModelSnapshot : ModelSnapshot

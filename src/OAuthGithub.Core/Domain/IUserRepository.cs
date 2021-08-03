@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace OAuthGitHub.Api.Domain
+namespace OAuthGithub.Core.Domain
 {
     public interface IUserRepository : IRepository<User, int>
     {

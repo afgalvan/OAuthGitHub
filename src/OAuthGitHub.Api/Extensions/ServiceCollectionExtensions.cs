@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using dotenv.net;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -12,11 +14,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using OAuthGitHub.Api.Application;
 using OAuthGitHub.Api.Application.OpenApiSpec;
-using OAuthGitHub.Api.Domain;
-using OAuthGitHub.Api.Infrastructure.Controllers.SignUp;
-using OAuthGitHub.Api.Infrastructure.Persistence;
+using OAuthGitHub.Api.Controllers.SignUp;
+using OAuthGithub.Core.Application;
+using OAuthGithub.Core.Domain;
+using OAuthGithub.Core.Infrastructure.Persistence;
 
 namespace OAuthGitHub.Api.Extensions
 {
@@ -27,9 +29,10 @@ namespace OAuthGitHub.Api.Extensions
             services.AddScoped<SecurityTokenHandler, JwtSecurityTokenHandler>();
             services.AddScoped<IUserRepository, UserMysqlRepository>();
             services.AddScoped<JwtGenerator>();
-            services.AddScoped<AuthService>();
+            services.AddScoped<AccountCreator>();
             services.AddScoped<Hasher>();
             services.AddScoped<ILogger<SignUpController>, Logger<SignUpController>>();
+            services.AddMediatR(Assembly.Load("OAuthGitHub.Core"));
         }
 
         public static void ConfigureDbContext(this IServiceCollection services,

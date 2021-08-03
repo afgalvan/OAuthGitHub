@@ -4,9 +4,9 @@ using System.Globalization;
 using System.Security.Claims;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
-using OAuthGitHub.Api.Domain;
+using OAuthGithub.Core.Domain;
 
-namespace OAuthGitHub.Api.Application
+namespace OAuthGithub.Core.Application
 {
     public class JwtGenerator
     {

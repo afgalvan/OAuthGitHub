@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using OAuthGitHub.Api.Domain;
+using OAuthGithub.Core.Domain;
 
-namespace OAuthGitHub.Api.Infrastructure.Persistence.EntityConfigurations
+namespace OAuthGithub.Core.Infrastructure.Persistence.EntityConfigurations
 {
     public class UserConfiguration : IEntityTypeConfiguration<User>
     {

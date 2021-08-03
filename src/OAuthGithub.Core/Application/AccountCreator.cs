@@ -1,25 +1,27 @@
 using System.Threading;
 using System.Threading.Tasks;
-using OAuthGitHub.Api.Domain;
+using OAuthGithub.Core.Domain;
 
-namespace OAuthGitHub.Api.Application
+namespace OAuthGithub.Core.Application
 {
-    public class AuthService
+    public class AccountCreator
     {
         private readonly JwtGenerator    _jwtGenerator;
-        private readonly Hasher       _hasher;
+        private readonly Hasher          _hasher;
         private readonly IUserRepository _userRepository;
 
-        public AuthService(JwtGenerator jwtGenerator, IUserRepository userRepository,
+        public AccountCreator(JwtGenerator jwtGenerator, IUserRepository userRepository,
             Hasher hasher)
         {
             _jwtGenerator   = jwtGenerator;
             _userRepository = userRepository;
-            _hasher      = hasher;
+            _hasher         = hasher;
         }
 
-        public async Task<string> SignUp(User user, CancellationToken cancellation)
+        public async Task<string> Create(string username, string email, string password, CancellationToken cancellation)
         {
+            User user = new(username, email, password);
+
             user.Password = _hasher.Hash(user.Password);
             User savedUser = await _userRepository.Save(user, cancellation);
             return _jwtGenerator.Generate(savedUser);

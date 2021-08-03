@@ -1,12 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using OAuthGitHub.Api.Domain;
+using OAuthGithub.Core.Domain;
 
-namespace OAuthGitHub.Api.Infrastructure.Persistence
+namespace OAuthGithub.Core.Infrastructure.Persistence
 {
     public class UserMysqlRepository : IUserRepository
     {
