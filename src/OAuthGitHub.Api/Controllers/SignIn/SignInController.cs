@@ -9,11 +9,6 @@ namespace OAuthGitHub.Api.Controllers.SignIn
     [ApiController]
     public class SignInController : ControllerBase
     {
-
-        public SignInController()
-        {
-        }
-
         private IActionResult ProviderNotSupported(string provider)
         {
             ModelState.AddModelError("ProviderNotSupported",
@@ -25,9 +20,7 @@ namespace OAuthGitHub.Api.Controllers.SignIn
         public async Task<IActionResult> SignIn([FromRoute] string provider)
         {
             if (!await HttpContext.IsProviderSupportedAsync(provider))
-            {
                 return ProviderNotSupported(provider);
-            }
 
             return Challenge(new AuthenticationProperties {RedirectUri = "/"}, provider);
         }

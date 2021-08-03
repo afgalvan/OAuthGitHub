@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace OAuthGitHub.Api.Application.OpenApiSpec
+namespace OAuthGitHub.Api.Extensions.OpenApiSpec
 {
     public class AuthorizationOperationFilter : IOperationFilter
     {

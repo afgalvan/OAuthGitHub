@@ -1,4 +1,4 @@
-using OAuthGitHub.Shared.Domain.Bus.Command;
+using Shared.Domain.Bus.Command;
 
 namespace OAuthGithub.Core.Application
 {

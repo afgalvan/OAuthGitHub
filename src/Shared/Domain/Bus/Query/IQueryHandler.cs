@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace OAuthGitHub.Shared.Domain.Bus.Query
+namespace Shared.Domain.Bus.Query
 {
     public interface IQueryHandler<in TQuery, TResponse> : IRequestHandler<TQuery, TResponse>
         where TQuery : IQuery<TResponse>
