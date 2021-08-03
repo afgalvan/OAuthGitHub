@@ -5,11 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Hooks" />
-      <Folder Include="Steps" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="FluentAssertions" Version="5.10.3" />
       <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
       <PackageReference Include="SpecFlow.xUnit" Version="3.9.22" />
