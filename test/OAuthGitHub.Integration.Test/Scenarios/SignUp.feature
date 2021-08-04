@@ -4,7 +4,7 @@ As an unregistered person
 I want to register as new user in the server
 
   Scenario: A valid unregistered user
-    Given I send a POST request to "/auth/signup" with body:
+    Given I send a POST request to "/auth/signUp" with body:
     """
     {
       "username": "Bob",
@@ -15,7 +15,7 @@ I want to register as new user in the server
     Then the response status code should be 201
 
   Scenario: A invalid user request with no email
-    Given I send a POST request to "/auth/signup" with body:
+    Given I send a POST request to "/auth/signUp" with body:
     """
     {
       "username": "Bob",
@@ -33,7 +33,7 @@ I want to register as new user in the server
       "password": "passbob"
     }
     """
-    When I send a POST request to "/auth/signup" with body:
+    When I send a POST request to "/auth/signUp" with body:
     """
     {
       "username": "Bob",

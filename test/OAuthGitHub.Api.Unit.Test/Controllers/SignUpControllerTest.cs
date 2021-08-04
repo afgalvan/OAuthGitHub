@@ -27,20 +27,20 @@ namespace OAuthGitHub.Api.Unit.Test.Controllers
         }
 
         [Test, Order(0)]
-        public async Task RegisterNonExistingUser_ShouldReturnOkStatus()
+        public async Task RegisterNonExistingUser_ShouldReturnCreatedStatus()
         {
             _response =
                 await _controller.SignUp(SignUpRequestStub.Request, new CancellationToken());
             _mediator.MockShouldBeCalled();
 
-            _response.Should().BeAssignableTo(typeof(OkObjectResult))
+            _response.Should().BeAssignableTo(typeof(CreatedResult))
                 .And.NotBeEquivalentTo(typeof(BadRequestResult));
         }
 
         [Test, Order(3)]
         public void RegisterNonExistingUser_ShouldReturnTheToken()
         {
-            var okResponse   = _response.As<OkObjectResult>();
+            var okResponse   = _response.As<CreatedResult>();
             var authResponse = okResponse.Value.As<AuthenticationResponse>();
 
             authResponse.Token.Should().BeEquivalentTo(TokenStub.Token);

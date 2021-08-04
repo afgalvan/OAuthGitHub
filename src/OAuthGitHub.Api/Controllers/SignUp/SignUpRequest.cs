@@ -12,5 +12,9 @@ namespace OAuthGitHub.Api.Controllers.SignUp
 
         [Required]
         public string Password { get; init; }
+
+
+        public override string ToString() =>
+            $"{{\nusername: {Username},\nemail: {Email},\npassword: {Password}\n}}";
     }
 }

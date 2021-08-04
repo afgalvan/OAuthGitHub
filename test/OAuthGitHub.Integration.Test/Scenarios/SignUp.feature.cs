@@ -110,7 +110,7 @@ namespace OAuthGitHub.Integration.Test.Scenarios
             {
                 this.ScenarioStart();
 #line 7
-    testRunner.Given("I send a POST request to \"/auth/signup\" with body:", "{\n  \"username\": \"Bob\",\n  \"email\": \"bob@bobmail.bob\",\n  \"password\": \"passbob\"\n}", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("I send a POST request to \"/auth/signUp\" with body:", "{\n  \"username\": \"Bob\",\n  \"email\": \"bob@bobmail.bob\",\n  \"password\": \"passbob\"\n}", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 15
     testRunner.Then("the response status code should be 201", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -148,50 +148,9 @@ namespace OAuthGitHub.Integration.Test.Scenarios
             {
                 this.ScenarioStart();
 #line 18
-    testRunner.Given("I send a POST request to \"/auth/signup\" with body:", "{\n  \"username\": \"Bob\",\n  \"password\": \"passbob\"\n}", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("I send a POST request to \"/auth/signUp\" with body:", "{\n  \"username\": \"Bob\",\n  \"password\": \"passbob\"\n}", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 25
-    testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [Xunit.SkippableFactAttribute(DisplayName="A repeated email user")]
-        [Xunit.TraitAttribute("FeatureTitle", "Signup")]
-        [Xunit.TraitAttribute("Description", "A repeated email user")]
-        public virtual void ARepeatedEmailUser()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A repeated email user", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 27
-  this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 28
-    testRunner.Given("the following user already exists:", "{\n  \"username\": \"Bob\",\n  \"email\": \"bob@bobmail.bob\",\n  \"password\": \"passbob\"\n}", ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 36
-    testRunner.When("I send a POST request to \"/auth/signup\" with body:", "{\n  \"username\": \"Bob\",\n  \"email\": \"bob@bobmail.bob\",\n  \"password\": \"passbob\"\n}", ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 44
     testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

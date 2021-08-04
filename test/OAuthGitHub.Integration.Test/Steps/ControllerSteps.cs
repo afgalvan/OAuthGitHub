@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -5,6 +6,7 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using OAuthGitHub.Api;
+using OAuthGitHub.Api.Controllers.SignUp;
 using TechTalk.SpecFlow;
 using Xunit;
 
@@ -36,11 +38,16 @@ namespace OAuthGitHub.Integration.Test.Steps
 
         private async Task PostRequest(string route, string bodyString)
         {
-            object body =
-                await Task.Factory.StartNew(() => JsonConvert.DeserializeObject(bodyString));
+            SignUpRequest body =
+                await Task.Factory.StartNew(() =>
+                    JsonConvert.DeserializeObject<SignUpRequest>(bodyString));
             HttpContent content = JsonContent.Create(body);
 
-            _request  = await _client.PostAsync(route, content);
+            _request = await _client.PostAsync(route, content);
+            Console.WriteLine(new string('-', 50));
+            Console.WriteLine(body.ToString());
+            Console.WriteLine(new string('-', 50));
+
             _response = _request;
         }
 
