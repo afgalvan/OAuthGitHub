@@ -1,9 +1,7 @@
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Reflection;
 using System.Text;
-using dotenv.net;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -81,11 +79,10 @@ namespace OAuthGitHub.Api.Extensions
             });
         }
 
-        public static void AddOAuth(this IServiceCollection services)
+        public static void AddOAuth(this IServiceCollection services,
+            IConfiguration configuration)
         {
-            IDictionary<string, string> env = DotEnv.Read();
-
-            byte[] key = Encoding.UTF8.GetBytes(env["JWT_SECRET"]);
+            byte[] key = Encoding.UTF8.GetBytes(configuration["Security:JwtKey"]);
 
             services.AddSingleton(_ => new SecretKey(key));
 
@@ -108,8 +105,8 @@ namespace OAuthGitHub.Api.Extensions
                 })
                 .AddGitHub(options =>
                 {
-                    options.ClientId     = env["GITHUB_CLIENT_ID"];
-                    options.ClientSecret = env["GITHUB_CLIENT_SECRET"];
+                    options.ClientId     = configuration["OAuth:GitHub:ClientId"];
+                    options.ClientSecret = configuration["OAuth:GitHub:ClientSecret"];
                     options.Scope.Add("user:email");
                 });
         }
