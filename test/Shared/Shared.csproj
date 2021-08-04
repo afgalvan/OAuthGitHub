@@ -5,7 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Mocks" />
+      <Folder Include="Stubs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="xunit.extensibility.core" Version="2.4.0" />
     </ItemGroup>
 
 </Project>

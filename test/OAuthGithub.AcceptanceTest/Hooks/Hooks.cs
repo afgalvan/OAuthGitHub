@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.TestFramework;
 
-namespace OAuthGithub.Test.Hooks
+namespace OAuthGithub.AcceptanceTest.Hooks
 {
     [Binding]
     public sealed class Hooks
@@ -21,7 +21,7 @@ namespace OAuthGithub.Test.Hooks
         {
             IConfiguration config = new ConfigurationBuilder()
                 .AddJsonFile(
-                    Path.Combine(_testRunContext.GetTestDirectory(), "appsettings.json"),
+                    Path.Combine(_testRunContext.GetTestDirectory(), "appsettings.Test.json"),
                     optional: true, reloadOnChange: true)
                 .Build();
 

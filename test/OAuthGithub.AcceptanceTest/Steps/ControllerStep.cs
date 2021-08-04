@@ -7,7 +7,7 @@ using OAuthGitHub.Api;
 using TechTalk.SpecFlow;
 using Xunit;
 
-namespace OAuthGithub.Test.Steps
+namespace OAuthGithub.AcceptanceTest.Steps
 {
     [Binding]
     public sealed class ControllerStep : IClassFixture<WebApplicationFactory<Startup>>
