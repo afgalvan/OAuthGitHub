@@ -7,7 +7,7 @@ using Moq;
 using OAuthGithub.Api.UnitTest.Stubs;
 using OAuthGithub.Core.Application;
 
-namespace OAuthGithub.Api.UnitTest.Mocks
+namespace OAuthGitHub.Api.Unit.Test.Mocks
 {
     public static class SignUpMediatorMock
     {

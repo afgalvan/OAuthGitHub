@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 using OAuthGitHub.Api.Controllers.Shared;
 using OAuthGitHub.Api.Controllers.SignUp;
-using OAuthGithub.Api.UnitTest.Mocks;
+using OAuthGitHub.Api.Unit.Test.Mocks;
+using OAuthGitHub.Api.Unit.Test.Stubs;
 using OAuthGithub.Api.UnitTest.Stubs;
 
-namespace OAuthGithub.Api.UnitTest.Controllers
+namespace OAuthGitHub.Api.Unit.Test.Controllers
 {
     [TestFixture]
     public class SignUpControllerTest : ControllerTest<SignUpController>

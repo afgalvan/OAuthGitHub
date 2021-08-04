@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.TestFramework;
 
-namespace OAuthGithub.AcceptanceTest.Hooks
+namespace OAuthGitHub.Integration.Test.Hooks
 {
     [Binding]
     public sealed class Hooks

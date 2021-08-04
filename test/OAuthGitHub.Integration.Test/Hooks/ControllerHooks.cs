@@ -1,6 +1,6 @@
 using TechTalk.SpecFlow;
 
-namespace OAuthGithub.AcceptanceTest.Hooks
+namespace OAuthGitHub.Integration.Test.Hooks
 {
     [Binding]
     public sealed class ControllerHooks

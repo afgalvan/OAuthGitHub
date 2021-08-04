@@ -1,6 +1,6 @@
 using OAuthGitHub.Api.Controllers.SignUp;
 
-namespace OAuthGithub.Api.UnitTest.Stubs
+namespace OAuthGitHub.Api.Unit.Test.Stubs
 {
     public static class SignUpRequestStub
     {

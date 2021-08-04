@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace OAuthGithub.AcceptanceTest.Scenarios
+namespace OAuthGitHub.Integration.Test.Scenarios
 {
     using TechTalk.SpecFlow;
     using System;
@@ -31,7 +31,7 @@ namespace OAuthGithub.AcceptanceTest.Scenarios
 #line 1 "Home.feature"
 #line hidden
         
-        public ApiStatusFeature(ApiStatusFeature.FixtureData fixtureData, OAuthGithub_AcceptanceTest_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public ApiStatusFeature(ApiStatusFeature.FixtureData fixtureData, OAuthGitHub_Integration_Test_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();

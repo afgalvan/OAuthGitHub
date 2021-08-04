@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Moq;
 
-namespace OAuthGithub.Api.UnitTest.Controllers
+namespace OAuthGitHub.Api.Unit.Test.Controllers
 {
     public class ControllerTest<T>
     {
