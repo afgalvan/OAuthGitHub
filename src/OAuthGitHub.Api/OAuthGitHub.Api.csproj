@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\OAuthGithub.Core\OAuthGithub.Core.csproj" />
+      <ProjectReference Include="..\OAuthGitHub.Core\OAuthGitHub.Core.csproj" />
     </ItemGroup>
 
 </Project>
