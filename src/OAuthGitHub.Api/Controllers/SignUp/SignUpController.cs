@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OAuthGitHub.Api.Controllers.Shared;
@@ -16,17 +17,21 @@ namespace OAuthGitHub.Api.Controllers.SignUp
         private readonly IMediator                 _mediator;
         private readonly ILogger<SignUpController> _logger;
 
-        public SignUpController(ILogger<SignUpController> logger, IMediator mediator)
+        public SignUpController(IMediator mediator, ILogger<SignUpController> logger)
         {
-            _logger   = logger;
             _mediator = mediator;
+            _logger   = logger;
         }
 
         [HttpPost("signUp")]
-        public async Task<ActionResult<AuthenticationResponse>> SignUp(
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(AuthenticationResponse), StatusCodes.Status200OK)]
+        public async Task<ActionResult> SignUp(
             [FromBody] SignUpRequest request, CancellationToken cancellationToken)
         {
-            var command = new RegisterCommand(request.Username, request.Email, request.Password);
+            var command =
+                new RegisterCommand(request.Username, request.Email, request.Password);
             try
             {
                 string token = await _mediator.Send(command, cancellationToken);

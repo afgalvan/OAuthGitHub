@@ -8,5 +8,7 @@ namespace OAuthGitHub.Api.Controllers.Shared
         {
             Token = token;
         }
+
+        public override string ToString() => Token;
     }
 }
