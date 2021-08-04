@@ -5,7 +5,7 @@ namespace OAuthGitHub.Api.Unit.Test.Controllers
 {
     public class ControllerTest<T>
     {
-        protected readonly Mock<ILogger<T>> Logger;
+        protected Mock<ILogger<T>> Logger { get; }
 
         protected ControllerTest()
         {

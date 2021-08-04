@@ -1,4 +1,5 @@
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -10,14 +11,37 @@ using Xunit;
 namespace OAuthGitHub.Integration.Test.Steps
 {
     [Binding]
-    public sealed class ControllerStep : IClassFixture<WebApplicationFactory<Startup>>
+    public sealed class ControllerSteps : IClassFixture<WebApplicationFactory<Startup>>
     {
         private readonly HttpClient          _client;
         private          HttpResponseMessage _response;
+        private          HttpResponseMessage _request;
 
-        public ControllerStep(WebApplicationFactory<Startup> fixture)
+        public ControllerSteps(WebApplicationFactory<Startup> fixture)
         {
             _client = fixture.CreateClient();
+        }
+
+        [Given(@"I send a POST request to ""(.*)"" with body:")]
+        public async Task GivenISendAPostRequestToWithBody(string route, string body)
+        {
+            await PostRequest(route, body);
+        }
+
+        [When(@"I send a POST request to ""(.*)"" with body:")]
+        public async Task WhenISendAPostRequestToWithBody(string route, string body)
+        {
+            await PostRequest(route, body);
+        }
+
+        private async Task PostRequest(string route, string bodyString)
+        {
+            object body =
+                await Task.Factory.StartNew(() => JsonConvert.DeserializeObject(bodyString));
+            HttpContent content = JsonContent.Create(body);
+
+            _request  = await _client.PostAsync(route, content);
+            _response = _request;
         }
 
         [Given(@"I send a GET request to ""(.*)""")]

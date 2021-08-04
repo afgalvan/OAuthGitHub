@@ -30,10 +30,10 @@ namespace OAuthGitHub.Api
         {
             app.ConfigureCors(Configuration);
             app.UseForwardedHeaders();
+            app.UseSwaggerDocumentation();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwaggerDocumentation();
             }
 
             app.UseHttpsRedirection();

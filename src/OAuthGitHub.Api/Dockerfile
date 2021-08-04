@@ -9,7 +9,7 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["src/OAuthGitHub.Api/OAuthGitHub.Api.csproj", "OAuthGitHub.Api/"]
 COPY ["src/OAuthGitHub.Core/OAuthGitHub.Core.csproj", "OAuthGitHub.Core/"]
-COPY ["src/OAuthGitHub.Shared/OAuthGitHub.Shared.csproj", "OAuthGitHub.Shared/"]
+COPY ["src/Shared/Shared.csproj", "Shared/"]
 RUN dotnet restore "/src/OAuthGitHub.Api/OAuthGitHub.Api.csproj"
 COPY ./src .
 WORKDIR "/src/OAuthGitHub.Api"

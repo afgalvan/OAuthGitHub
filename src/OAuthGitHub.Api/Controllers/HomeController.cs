@@ -20,5 +20,8 @@ namespace OAuthGitHub.Api.Controllers
             Name    = "OAuth with GitHub Example",
             Version = "1.0.0"
         });
+
+        [HttpGet("{regex(^doc)}")]
+        public ActionResult Documentation() => Redirect("swagger/index.html");
     }
 }

@@ -16,4 +16,4 @@ docker attach api_proxy
 docker-compose -f docker/docker-compose.yml up --build
 ```
 
-Open a browser and go to <http://localhost/WeatherForecast>
+Open a browser and go to <http://localhost/doc>

@@ -6,16 +6,16 @@ namespace OAuthGithub.Core.Application
 {
     public class Hasher
     {
+        private readonly byte[] _salt = new byte[128 / 8];
+
         public string Hash(string password)
         {
-            var salt = new byte[128 / 8];
-
             using var randomNumberGenerator = RandomNumberGenerator.Create();
-            randomNumberGenerator.GetBytes(salt);
+            randomNumberGenerator.GetBytes(_salt);
 
             return Convert.ToBase64String(KeyDerivation.Pbkdf2(
                 password,
-                salt,
+                _salt,
                 KeyDerivationPrf.HMACSHA1,
                 10000,
                 256 / 8));
