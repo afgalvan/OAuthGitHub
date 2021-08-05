@@ -30,7 +30,7 @@ namespace OAuthGitHub.Api.Unit.Test.Controllers
         {
             _response =
                 await _controller.SignUp(SignUpRequestStub.Request, new CancellationToken());
-            _mediator.MockShouldBeCalled();
+            _mediator.Should().HaveBeenCalledMock();
 
             _response.Should().BeAssignableTo(typeof(CreatedResult))
                 .And.NotBeEquivalentTo(typeof(BadRequestResult));

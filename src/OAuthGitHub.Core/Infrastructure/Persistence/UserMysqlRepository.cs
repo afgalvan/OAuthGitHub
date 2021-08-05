@@ -13,7 +13,7 @@ namespace OAuthGithub.Core.Infrastructure.Persistence
 
         public UserMysqlRepository(ApplicationDbContext context)
         {
-            context.Database.MigrateAsync();
+            context.Database.EnsureCreated();
             _context = context;
         }
 

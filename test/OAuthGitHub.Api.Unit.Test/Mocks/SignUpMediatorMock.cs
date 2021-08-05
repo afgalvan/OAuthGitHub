@@ -2,6 +2,7 @@ using System;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentAssertions.Primitives;
 using MediatR;
 using Moq;
 using OAuthGitHub.Api.Unit.Test.Stubs;
@@ -22,7 +23,7 @@ namespace OAuthGitHub.Api.Unit.Test.Mocks
             return Mock.Object;
         }
 
-        public static void MockShouldBeCalled(this IMediator mediator)
+        public static void HaveBeenCalledMock(this ObjectAssertions objectAssertions)
         {
             Mock.Verify(Expression, Times.AtLeastOnce);
         }
