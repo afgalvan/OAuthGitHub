@@ -1,13 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
-        <RootNamespace>Shared</RootNamespace>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>OAuthGitHub.Shared</AssemblyName>
+    <RootNamespace>OAuthGitHub.Shared</RootNamespace>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Include="MediatR" Version="9.0.0" />
-      <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="9.0.0"/>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0"/>
+  </ItemGroup>
 
 </Project>

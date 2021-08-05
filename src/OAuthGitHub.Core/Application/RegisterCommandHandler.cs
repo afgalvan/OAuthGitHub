@@ -1,6 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Shared.Domain.Bus.Command;
+using OAuthGitHub.Shared.Domain.Bus.Command;
 
 namespace OAuthGithub.Core.Application
 {
