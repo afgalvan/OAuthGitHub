@@ -1,25 +1,24 @@
-using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using FluentAssertions;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
-using OAuthGitHub.Api;
 using OAuthGitHub.Api.Controllers.SignUp;
+using OAuthGitHub.Integration.Test.Hooks;
 using TechTalk.SpecFlow;
 using Xunit;
 
 namespace OAuthGitHub.Integration.Test.Steps
 {
     [Binding]
-    public sealed class ControllerSteps : IClassFixture<WebApplicationFactory<Startup>>
+    public sealed class ControllerSteps : IClassFixture<ApiWebApplicationFixture>
     {
         private readonly HttpClient          _client;
         private          HttpResponseMessage _response;
         private          HttpResponseMessage _request;
 
-        public ControllerSteps(WebApplicationFactory<Startup> fixture)
+        public ControllerSteps(ApiWebApplicationFixture fixture)
         {
             _client = fixture.CreateClient();
         }
@@ -38,16 +37,12 @@ namespace OAuthGitHub.Integration.Test.Steps
 
         private async Task PostRequest(string route, string bodyString)
         {
-            SignUpRequest body =
-                await Task.Factory.StartNew(() =>
-                    JsonConvert.DeserializeObject<SignUpRequest>(bodyString));
+            Dictionary<string, string> body = await Task.Factory.StartNew(() =>
+                JsonConvert.DeserializeObject<Dictionary<string, string>>(bodyString));
+
             HttpContent content = JsonContent.Create(body);
 
-            _request = await _client.PostAsync(route, content);
-            Console.WriteLine(new string('-', 50));
-            Console.WriteLine(body.ToString());
-            Console.WriteLine(new string('-', 50));
-
+            _request  = await _client.PostAsync(route, content);
             _response = _request;
         }
 

@@ -8,7 +8,6 @@ using OAuthGitHub.Api.Controllers.Shared;
 using OAuthGitHub.Api.Controllers.SignUp;
 using OAuthGitHub.Api.Unit.Test.Mocks;
 using OAuthGitHub.Api.Unit.Test.Stubs;
-using OAuthGithub.Api.UnitTest.Stubs;
 
 namespace OAuthGitHub.Api.Unit.Test.Controllers
 {

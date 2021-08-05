@@ -4,7 +4,8 @@ As an unregistered person
 I want to register as new user in the server
 
   Scenario: A valid unregistered user
-    Given I send a POST request to "/auth/signUp" with body:
+    Given an empty database
+    And I send a POST request to "/auth/signUp" with body:
     """
     {
       "username": "Bob",
@@ -25,10 +26,11 @@ I want to register as new user in the server
     Then the response status code should be 400
 
   Scenario: A repeated email user
-    Given the following user already exists:
+    Given an empty database
+    And the following user already exists:
     """
     {
-      "username": "Bob",
+      "name": "Bob",
       "email": "bob@bobmail.bob",
       "password": "passbob"
     }

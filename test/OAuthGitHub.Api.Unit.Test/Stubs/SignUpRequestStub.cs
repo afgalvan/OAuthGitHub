@@ -6,7 +6,7 @@ namespace OAuthGitHub.Api.Unit.Test.Stubs
     {
         public static readonly SignUpRequest Request = new()
         {
-            Username = "testUser",
+            Username = "test",
             Email = "testUser@example.com",
             Password = "testPassword"
         };

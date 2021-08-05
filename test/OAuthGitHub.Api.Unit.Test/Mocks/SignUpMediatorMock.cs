@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Moq;
-using OAuthGithub.Api.UnitTest.Stubs;
+using OAuthGitHub.Api.Unit.Test.Stubs;
 using OAuthGithub.Core.Application;
 
 namespace OAuthGitHub.Api.Unit.Test.Mocks
@@ -18,9 +18,7 @@ namespace OAuthGitHub.Api.Unit.Test.Mocks
 
         public static IMediator Mediator()
         {
-            Mock.Setup(Expression)
-                .ReturnsAsync(TokenStub.Token);
-
+            Mock.Setup(Expression).ReturnsAsync(TokenStub.Token);
             return Mock.Object;
         }
 

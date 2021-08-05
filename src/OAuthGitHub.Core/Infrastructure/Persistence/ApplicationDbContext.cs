@@ -11,6 +11,10 @@ namespace OAuthGithub.Core.Infrastructure.Persistence
         {
         }
 
+        public ApplicationDbContext()
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -36,9 +36,12 @@ namespace OAuthGitHub.Api.Extensions
         public static void ConfigureDbContext(this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
-            );
+            if (configuration["Database:Provider"] == "PostgreSQL")
+            {
+                services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
+                );
+            }
         }
 
         public static void ConfigureProxy(this IServiceCollection services)

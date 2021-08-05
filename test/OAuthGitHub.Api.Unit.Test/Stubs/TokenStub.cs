@@ -1,4 +1,4 @@
-namespace OAuthGithub.Api.UnitTest.Stubs
+namespace OAuthGitHub.Api.Unit.Test.Stubs
 {
     public static class TokenStub
     {
