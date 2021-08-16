@@ -1,7 +1,6 @@
 namespace OAuthGitHub.Api.Unit.Test.Controllers
 
 open System.Threading
-open FluentAssertions
 open FsUnit
 open FSharp.Control.Tasks.V2
 open Microsoft.AspNetCore.Mvc
@@ -14,7 +13,7 @@ open OAuthGitHub.Api.Unit.Test.Mocks.SignUpMediatorMock
 [<TestFixture>]
 type SignUpControllerTest() =
     inherit ControllerTest<SignUpController>()
-    let mutable response: ActionResult = null
+    let mutable response : ActionResult = null
 
     member private this.mediator = Mediator()
 
@@ -33,9 +32,9 @@ type SignUpControllerTest() =
     [<Test; Order(3)>]
     member this.RegisterNonExistingUser_ShouldReturnTheToken() =
         response |> should not' (equal null)
-        let okResponse = response.As<CreatedResult>()
+        let okResponse = response :?> CreatedResult
 
         let authResponse =
-            okResponse.Value.As<AuthenticationResponse>()
+            okResponse.Value :?> AuthenticationResponse
 
         authResponse.Token |> should be (sameAs tokenStub)
